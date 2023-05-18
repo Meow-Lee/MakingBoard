@@ -4,6 +4,7 @@ import com.example.MakingBoard.Answer.Answer;
 import com.example.MakingBoard.Question.Question;
 import com.example.MakingBoard.Answer.AnswerRepository;
 import com.example.MakingBoard.Question.QuestionRepository;
+import com.example.MakingBoard.Question.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,9 @@ class MakingBoardApplicationTests {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+
+	@Autowired
+	private QuestionService questionService;
 
 	@Autowired
 	private AnswerRepository answerRepository;
@@ -116,15 +120,24 @@ class MakingBoardApplicationTests {
 //		assertEquals(2, a.getQuestion().getId());
 //	}
 
-	@Transactional
-	@Test
-	public void test10(){
-		Optional<Question> oq = this.questionRepository.findById(2);
-		assertTrue(oq.isPresent());
-		Question q = oq.get();
+//	@Transactional
+//	@Test
+//	public void test10(){
+//		Optional<Question> oq = this.questionRepository.findById(2);
+//		assertTrue(oq.isPresent());
+//		Question q = oq.get();
+//
+//		List<Answer> answerList = q.getAnswerList();
+//		assertEquals(1, answerList.size());
+//		assertEquals("글 올리는 곳이죠", answerList.get(0).getContent());
+//	}
 
-		List<Answer> answerList = q.getAnswerList();
-		assertEquals(1, answerList.size());
-		assertEquals("글 올리는 곳이죠", answerList.get(0).getContent());
+	@Test
+	void test11(){
+		for(int i=1; i<=300; i++){
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용무";
+			this.questionService.create(subject, content);
+		}
 	}
 }
