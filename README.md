@@ -1,2 +1,5 @@
 # MakingBoard
-게시판 만들기 // 점프 투 스프링부트 따라해보기
+게시판 만들기
+
+
+Spring MVC와 Controller-Service-Repository 계층에 대해서 학습한 프로젝트입니다.
